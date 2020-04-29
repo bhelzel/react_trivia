@@ -1,4 +1,5 @@
 import React from 'react';
+import { Question } from './question';
 
 export default class QuestionDisplay extends React.Component {
     
@@ -20,7 +21,19 @@ export default class QuestionDisplay extends React.Component {
     render() {
         return(
             <div>
-                <p>{this.state.apiResponse}</p>
+                {
+                    Object.values(this.state.apiResponse).map(question => {
+                        return(
+                            <Question 
+                                text={question.text}
+                                category={question.category}
+                                answer={question.answer}
+                                dummyAnswers={question.dummy_answers}
+                                key={question.id}
+                            />
+                        )
+                    })
+                }
             </div>
         )
     }

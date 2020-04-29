@@ -1,13 +1,12 @@
 import React from 'react';
 
-export default class Question extends React.Component {
-    
-    constructor({ text, category, answer, dummy_answers }) {
-        this.state = {
-            text: text,
-            category: category,
-            answer: answer,
-            dummyAnswers: dummy_answers
-        };
-    }
+export const Question = ({ text, category, answer, dummyAnswers }) => {
+    return(
+        <div>
+            <p>{text}</p>
+            <p>{category}</p>
+            <p>{answer}</p>
+            <p>{dummyAnswers}</p>
+        </div>
+    )
 }
