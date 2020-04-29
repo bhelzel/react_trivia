@@ -1,6 +1,6 @@
 import React from 'react';
 
-class QuestionDisplay extends React.Component {
+export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
@@ -17,4 +17,11 @@ class QuestionDisplay extends React.Component {
         this.callAPI();
     }
 
+    render() {
+        return(
+            <div>
+                <p>{this.state.apiResponse}</p>
+            </div>
+        )
+    }
 }
