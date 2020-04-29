@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Route,
-  Redirect,
-  Switch,
-  Link,
-  HashRouter
-} from 'react-router-dom';
 
 import './stylesheets/App.css';
 
