@@ -12,7 +12,10 @@ export default class QuestionDisplay extends React.Component {
         const url = "https://anothertriviaapi.herokuapp.com/questions";
         fetch(url)
             .then(res => res.json())
-            .then(res => this.setState({ questions: res }));
+            .then(res => {
+                console.log(res.data);
+                this.setState({ questions: res.data });
+            });
     }
 
     componentWillMount() {
@@ -25,18 +28,15 @@ export default class QuestionDisplay extends React.Component {
             <div>
                 {
                     Object.values(this.state.questions).map(question => {
-                        console.log(question)
-                        // Object.values(questions).map(question => {
-                        //     return(
-                        //         <Question 
-                        //             text={question.text}
-                        //             category={question.category}
-                        //             answer={question.answer}
-                        //             dummyAnswers={question.dummy_answers}
-                        //             key={question.id}
-                        //         />
-                        //     )
-                        // })
+                            return(
+                                <Question 
+                                    text={question.text}
+                                    category={question.category}
+                                    answer={question.answer}
+                                    dummyAnswers={question.dummy_answers}
+                                    key={question.id}
+                                />
+                            )
                     })
                 }
             </div>
