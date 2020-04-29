@@ -5,33 +5,38 @@ export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { apiResponse: "" };
+        this.state = { questions: "" };
     }
 
-    callAPI() {
-        fetch("https://anothertriviaapi.herokuapp.com/questions")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
+    fetchQuestions() {
+        const url = "https://anothertriviaapi.herokuapp.com/questions";
+        fetch(url)
+            .then(res => res.json())
+            .then(res => this.setState({ questions: res }));
     }
 
     componentWillMount() {
-        this.callAPI();
+        this.fetchQuestions();
     }
 
     render() {
+        console.log(Object.values(this.state.questions));
         return(
             <div>
                 {
-                    Object.values(this.state.apiResponse).map(question => {
-                        return(
-                            <Question 
-                                text={question.text}
-                                category={question.category}
-                                answer={question.answer}
-                                dummyAnswers={question.dummy_answers}
-                                key={question.id}
-                            />
-                        )
+                    Object.values(this.state.questions).map(question => {
+                        console.log(question)
+                        // Object.values(questions).map(question => {
+                        //     return(
+                        //         <Question 
+                        //             text={question.text}
+                        //             category={question.category}
+                        //             answer={question.answer}
+                        //             dummyAnswers={question.dummy_answers}
+                        //             key={question.id}
+                        //         />
+                        //     )
+                        // })
                     })
                 }
             </div>
