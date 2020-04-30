@@ -19,7 +19,6 @@ export default class Question extends React.Component {
     }
 
     render(){
-        console.log(this.state.dummyAnswers);
         return(
             <form onSubmit={() => this.handleSubmit()} className="question-form">
                 <div className="question">

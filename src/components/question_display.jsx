@@ -5,7 +5,10 @@ export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { questions: [] };
+        this.state = { 
+            questions: [], 
+            questionOrder: 0
+        };
     }
 
     fetchQuestions() {
@@ -15,11 +18,28 @@ export default class QuestionDisplay extends React.Component {
             .then(res => {
                 console.log(res.data);
                 this.setState({ questions: res.data });
+                this.setState({ questionOrder: res.data.length });
             });
+    }
+
+    generateRandomOrder() {
+        let questionOrder = [];
+        let i = 0;
+        while (i < this.state.questionOrder) {
+            let idx = (Math.random() * this.state.questionOrder).floor()
+            if (questionOrder.includes(idx)) {
+                continue;
+            } else {
+                questionOrder.push(idx);
+                i ++;
+            }
+        }
+        this.setState({ questionOrder: questionOrder });
     }
 
     componentWillMount() {
         this.fetchQuestions();
+        this.generateRandomOrder();
     }
 
     render() {
@@ -34,6 +54,7 @@ export default class QuestionDisplay extends React.Component {
                                 category={question.attributes.category}
                                 answer={question.attributes.answer}
                                 dummyAnswers={question.attributes["dummy-answers"]}
+                                key={question.attributes.id}
                             />      
                         )
                     }))
