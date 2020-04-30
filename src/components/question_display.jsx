@@ -1,11 +1,11 @@
 import React from 'react';
-import { Question } from './question';
+import Question from './question';
 
 export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { questions: "" };
+        this.state = { questions: [] };
     }
 
     fetchQuestions() {
@@ -18,27 +18,31 @@ export default class QuestionDisplay extends React.Component {
             });
     }
 
+    makeQuestionCards() {
+        let questionCards = [];
+        Object.values(this.state.questions).map(question => {
+            questionCards.push(
+                Question.New(
+                    question.attributes.text,
+                    question.attributes.category,
+                    question.attributes.answer,
+                    question.attributes.dummy_answers
+                )    
+            );
+        });
+        this.setState({ question: questionCards });
+    }
+
     componentWillMount() {
         this.fetchQuestions();
+        this.makeQuestionCards();
     }
 
     render() {
         console.log(Object.values(this.state.questions));
         return(
             <div>
-                {
-                    Object.values(this.state.questions).map(question => {
-                            return(
-                                <Question 
-                                    text={question.text}
-                                    category={question.category}
-                                    answer={question.answer}
-                                    dummyAnswers={question.dummy_answers}
-                                    key={question.id}
-                                />
-                            )
-                    })
-                }
+                <p>derp</p>
             </div>
         )
     }
