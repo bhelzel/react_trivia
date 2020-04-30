@@ -26,7 +26,7 @@ export default class QuestionDisplay extends React.Component {
         let questionOrder = [];
         let i = 0;
         while (i < this.state.questionOrder) {
-            let idx = (Math.random() * this.state.questionOrder).floor()
+            let idx = (Math.random() * this.state.questionOrder).floor();
             if (questionOrder.includes(idx)) {
                 continue;
             } else {
