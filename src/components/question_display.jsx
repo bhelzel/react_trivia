@@ -1,5 +1,5 @@
 import React from 'react';
-import { Question } from './question';
+import Question from './question';
 
 export default class QuestionDisplay extends React.Component {
     
@@ -33,7 +33,7 @@ export default class QuestionDisplay extends React.Component {
                                 text={question.attributes.text}
                                 category={question.attributes.category}
                                 answer={question.attributes.answer}
-                                dummyAnswers={question.attributes.dummy_answers}
+                                dummyAnswers={question.attributes["dummy-answers"]}
                             />      
                         )
                     }))
