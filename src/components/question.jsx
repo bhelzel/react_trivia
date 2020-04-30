@@ -1,8 +1,13 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 
-export default class Question extends React.Component {
-
-    constructor({ text, category, answer, dummyAnswers }) {
-        super(props);
-    }
+export const Question = ({ text, category, answer, dummyAnswers}) => {
+    return(
+        <div>
+            <p>{text}</p>
+            <p>{category}</p>
+            <p>{answer}</p>
+            <p>{dummyAnswers}</p>
+        </div>
+    )
 }
