@@ -7,6 +7,7 @@ export default class QuestionDisplay extends React.Component {
         super(props);
         this.state = { questions: [] };
         this.shuffleQuestions.bind(this);
+        this.nextQuestion.bind(this);
     }
 
     fetchQuestions() {
@@ -28,24 +29,30 @@ export default class QuestionDisplay extends React.Component {
         this.fetchQuestions();
     }
 
+    nextQuestion() {
+
+    }
+
     render() {
-        // console.log(Object.values(this.state.questions));
         return(
-            <div>
-                {
-                    Object.values(this.state.questions.map(question => {
-                        // console.log(question);
-                        return(
-                            <Question 
-                                text={question.attributes.text}
-                                category={question.attributes.category}
-                                answer={question.attributes.answer}
-                                dummyAnswers={question.attributes["dummy-answers"]}
-                                key={question.attributes.id}
-                            />      
-                        )
-                    }))
-                }
+            <div className="game-page">
+                <div className="question-container">
+                    {
+                        Object.values(this.state.questions.map(question, idx => {
+                            return(
+                                <Question 
+                                    text={question.attributes.text}
+                                    category={question.attributes.category}
+                                    answer={question.attributes.answer}
+                                    dummyAnswers={question.attributes["dummy-answers"]}
+                                    key={question.attributes.id}
+                                    idx={idx}
+                                />      
+                            )
+                        }))
+                    }
+                </div>
+                <button onClick={() => this.nextQuestion()} className="next-button"></button>
             </div>
         )
         
