@@ -25,7 +25,7 @@ export default class QuestionDisplay extends React.Component {
         return questions;
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchQuestions();
     }
 
@@ -38,7 +38,7 @@ export default class QuestionDisplay extends React.Component {
             <div className="game-page">
                 <div className="question-container">
                     {
-                        Object.values(this.state.questions.map(question, idx => {
+                        Object.values(this.state.questions.map((question, i) => {
                             return(
                                 <Question 
                                     text={question.attributes.text}
@@ -46,7 +46,7 @@ export default class QuestionDisplay extends React.Component {
                                     answer={question.attributes.answer}
                                     dummyAnswers={question.attributes["dummy-answers"]}
                                     key={question.attributes.id}
-                                    idx={idx}
+                                    i={i}
                                 />      
                             )
                         }))
