@@ -5,10 +5,8 @@ export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { 
-            questions: [], 
-            questionOrder: 0
-        };
+        this.state = { questions: [] };
+        this.shuffleQuestions.bind(this);
     }
 
     fetchQuestions() {
@@ -16,38 +14,27 @@ export default class QuestionDisplay extends React.Component {
         fetch(url)
             .then(res => res.json())
             .then(res => {
-                console.log(res.data);
+                this.shuffleQuestions(res.data);
                 this.setState({ questions: res.data });
-                this.setState({ questionOrder: res.data.length });
             });
     }
 
-    generateRandomOrder() {
-        let questionOrder = [];
-        let i = 0;
-        while (i < this.state.questionOrder) {
-            let idx = (Math.random() * this.state.questionOrder).floor();
-            if (questionOrder.includes(idx)) {
-                continue;
-            } else {
-                questionOrder.push(idx);
-                i ++;
-            }
-        }
-        this.setState({ questionOrder: questionOrder });
+    shuffleQuestions(questions) {
+        questions.sort(() => Math.random() - 0.5);
+        return questions;
     }
 
     componentWillMount() {
         this.fetchQuestions();
-        this.generateRandomOrder();
     }
 
     render() {
-        console.log(Object.values(this.state.questions));
+        // console.log(Object.values(this.state.questions));
         return(
             <div>
                 {
                     Object.values(this.state.questions.map(question => {
+                        // console.log(question);
                         return(
                             <Question 
                                 text={question.attributes.text}
