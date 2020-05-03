@@ -5,7 +5,10 @@ export default class QuestionDisplay extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { questions: [] };
+        this.state = { 
+            questions: [],
+            currentQuestion: ""
+        };
         this.shuffleQuestions.bind(this);
         this.nextQuestion.bind(this);
     }
@@ -30,7 +33,7 @@ export default class QuestionDisplay extends React.Component {
     }
 
     nextQuestion() {
-
+        
     }
 
     render() {
