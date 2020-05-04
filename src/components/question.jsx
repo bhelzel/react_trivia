@@ -25,11 +25,15 @@ export default class Question extends React.Component {
                     <p>{this.state.text}</p>
                     <p>{this.state.category}</p>
                     <div>
-                        <input type="radio">{this.state.answer}</input>
+                        <label>{this.state.answer}
+                            <input type="radio" />
+                        </label>
                         {
                             this.state.dummyAnswers.map(answer => {
                                 return(
-                                    <input type="radio">{answer}</input>
+                                    <label>{answer}
+                                        <input type="radio" />
+                                    </label>
                                 )
                             })}
                     </div>
