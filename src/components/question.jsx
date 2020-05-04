@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import '../stylesheets/question.css';
 
 export default class Question extends React.Component {
 
@@ -18,13 +19,17 @@ export default class Question extends React.Component {
         console.log('submitted');
     }
 
+    shuffleAnswerOrder() {
+        return [0,1,2,3].sort(() => Math.random() - 0.5);
+    }
+
     render(){
         return(
             <form onSubmit={() => this.handleSubmit()} className="question-form">
                 <div className="question">
                     <p>{this.state.text}</p>
                     <p>{this.state.category}</p>
-                    <div>
+                    <div className="answers">
                         <label>{this.state.answer}
                             <input type="radio" />
                         </label>
